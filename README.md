@@ -15,7 +15,7 @@ This module implements a custom protocol layer over the LoRa transceiver (SX1276
 
 ---
 
-## 🧠 Packet Handling
+## Packet Handling
 
 The application can define its own callback to process incoming packets:
 
