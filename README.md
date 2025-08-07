@@ -4,7 +4,7 @@
 
 # LoRa Protocol Layer – High-Level Overview
 
-This module implements a custom protocol layer over the LoRa transceiver (SX1276), using ESP32 + FreeRTOS. The logic is organized modularly, with SPI low-level control functions encapsulated and separated from packet handling and protocol abstraction.
+This module implements a custom protocol layer over the LoRa (SX1276), using ESP32 + FreeRTOS. The logic is organized modularly, with SPI low-level control functions encapsulated and separated from packet handling and protocol abstraction.
 
 ---
 
