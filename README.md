@@ -25,7 +25,6 @@ void lora_set_packet_handler(lora_packet_handler_t handler);
 ```
 
 ```c
-
 void task_lora_rx(void *pvParameters)
 {
     uint8_t buf[256];
@@ -51,7 +50,7 @@ void task_lora_rx(void *pvParameters)
                     buf[i] = lora_read_reg(REG_FIFO);
                 }
 
-                // Confere se tamanho bate com o esperado
+                // Check if the size matches what is expected
                 if (len == LORA_PKT_SIZE) {
                     memcpy(&pkt, buf, sizeof(pkt));
                     uint16_t crc_calc = crc16((uint8_t*)&pkt, sizeof(pkt) - sizeof(pkt.crc));
@@ -61,17 +60,17 @@ void task_lora_rx(void *pvParameters)
                            lora_handle_packet(&pkt);     //  <<-------------------------------
                             
                         } else {
-                            ESP_LOGI(TAG, "Pacote ignorado (dst=%d, eu sou %d)", pkt.dst, MY_ID);
+                            ESP_LOGI(TAG, "Package ignored (dst=%d, eu sou %d)", pkt.dst, MY_ID);
                         }
                     } else {
-                        ESP_LOGW(TAG, "CRC inválido! esperado=0x%04X, recebido=0x%04X", crc_calc, pkt.crc);
+                        ESP_LOGW(TAG, "Invalid CRC! Expected:=0x%04X, received=0x%04X", crc_calc, pkt.crc);
                     }
                 } else {
                     ESP_LOGW(TAG, "Unexpected size: %d (Expected: %d)", len, LORA_PKT_SIZE);
                 }
             }
 
-            // Limpa flags e volta ao modo RX contínuo
+            // Clear flags and return to continuous RX mode
             lora_write_reg(REG_IRQ_FLAGS, irq);
             lora_write_reg(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_RX_CONTINUOUS);
             // int rssi = lora_read_reg(0x1A) - 137;
@@ -83,10 +82,8 @@ void task_lora_rx(void *pvParameters)
 
 }
 ````
-# Example of APPLICATION RECEIVER HANDLER
+### Example of APPLICATION RECEIVER HANDLER
 ```c
-
-// HANDLER PARA RECEBER LIDAR COM RX
 static void handler_LoRa_Rx_Controler(lora_packet_t *pkt) {
 
     if ((pkt->type) == LORA_TYPE_DATA){   
