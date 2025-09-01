@@ -30,7 +30,7 @@ void task_lora_rx(void *pvParameters)
     uint8_t buf[256];
     lora_packet_t pkt;
 
-    // Inicia modo RX contínuo
+    // Start continuous RX mode
     lora_write_reg(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_RX_CONTINUOUS);
 
     while (1) {
@@ -86,7 +86,7 @@ void task_lora_rx(void *pvParameters)
 ```c
 static void handler_LoRa_Rx_Controller(lora_packet_t *pkt) {
 
-    if ((pkt->type) == LORA_TYPE_DATA){   
+    if ( (pkt->type) == LORA_TYPE_DATA ){   
         char TAG[] = "RX LORA_TYPE_DATA";
         ESP_LOGI(TAG, "Received: %.*s", pkt->len, pkt->payload); // DEBUG
         /*
@@ -94,12 +94,12 @@ static void handler_LoRa_Rx_Controller(lora_packet_t *pkt) {
         */
     }
 
-    else if((pkt->type) == LORA_TYPE_ACK) {
+    else if( (pkt->type) == LORA_TYPE_ACK ) {
         ACK_PENDENTE = pdFALSE; 
         ESP_LOGI("RX LORA_TYPE_ACK", "ACK received from %d", pkt->id); // DEBUG
     }
 
-    else if ((pkt->type) ==LORA_TYPE_NACK){
+    else if ( (pkt->type) == LORA_TYPE_NACK ){
         ESP_LOGW("RX LORA_TYPE_NACK", "NACK received from %d", pkt->id); // DEBUG
     }      
 }
