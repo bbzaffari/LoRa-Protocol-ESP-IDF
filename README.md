@@ -60,7 +60,7 @@ void task_lora_rx(void *pvParameters)
                            lora_handle_packet(&pkt);     //  <<-------------------------------
                             
                         } else {
-                            ESP_LOGI(TAG, "Package ignored (dst=%d, eu sou %d)", pkt.dst, MY_ID);
+                            ESP_LOGI(TAG, "Package ignored (dst: %d, I am: %d)", pkt.dst, MY_ID);
                         }
                     } else {
                         ESP_LOGW(TAG, "Invalid CRC! Expected:=0x%04X, received=0x%04X", crc_calc, pkt.crc);
