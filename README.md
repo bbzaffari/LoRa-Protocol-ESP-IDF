@@ -96,11 +96,11 @@ static void handler_LoRa_Rx_Controler(lora_packet_t *pkt) {
 
     else if((pkt->type) == LORA_TYPE_ACK) {
         ACK_PENDENTE = pdFALSE; 
-        ESP_LOGI("RX LORA_TYPE_ACK", "ACK received de %d", pkt->id); // DEBUG
+        ESP_LOGI("RX LORA_TYPE_ACK", "ACK received from %d", pkt->id); // DEBUG
     }
 
     else if ((pkt->type) ==LORA_TYPE_NACK){
-        ESP_LOGW("RX LORA_TYPE_NACK", "NACK received de %d", pkt->id); // DEBUG
+        ESP_LOGW("RX LORA_TYPE_NACK", "NACK received from %d", pkt->id); // DEBUG
     }      
 }
 ````
