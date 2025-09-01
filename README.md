@@ -84,7 +84,7 @@ void task_lora_rx(void *pvParameters)
 ````
 ### Example of APPLICATION RECEIVER HANDLER
 ```c
-static void handler_LoRa_Rx_Controler(lora_packet_t *pkt) {
+static void handler_LoRa_Rx_Controller(lora_packet_t *pkt) {
 
     if ((pkt->type) == LORA_TYPE_DATA){   
         char TAG[] = "RX LORA_TYPE_DATA";
