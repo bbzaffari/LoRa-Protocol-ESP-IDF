@@ -1,8 +1,8 @@
-# LoRa-Proto 
+# LoRa Protocol Layer 
 
 [![Status: stable | refactoring in progress](https://img.shields.io/badge/Status-stable%20%7C%20refactoring%20in%20progress-green.svg)](https://github.com/bbzaffari/Cooling-Link-Controller)
 
-# LoRa Protocol Layer – High-Level Overview
+## Overview
 
 This module implements a custom protocol layer over the LoRa (SX1276), using ESP32 + FreeRTOS. The logic is organized modularly, with SPI low-level control functions encapsulated and separated from packet handling and protocol abstraction.
 
