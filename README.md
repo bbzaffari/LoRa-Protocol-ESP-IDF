@@ -6,13 +6,13 @@
 
 This module implements a custom protocol layer over the LoRa (SX1276), using ESP32 + FreeRTOS. The logic is organized modularly, with SPI low-level control functions encapsulated and separated from packet handling and protocol abstraction.
 
----
 
 ## General Structure
 
 - **`lora_setup()`** – Initializes the SPI bus, configures the LoRa chip, sets physical modulation parameters (SF, BW, CR), maps interrupts, and creates the reception task (`task_lora_rx`).
 - **`task_lora_rx()`** – A dedicated task for packet reception, running with **high priority** (level 5) and pinned to core 0. It is triggered via an ISR associated with the DIO0 pin (`RxDone` event) and handles reading, validating (CRC and address), and dispatching the packet.
-
+  
+---
 ---
 
 ## Packet Handling
