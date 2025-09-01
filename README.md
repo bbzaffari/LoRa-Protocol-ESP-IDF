@@ -58,7 +58,7 @@ void task_lora_rx(void *pvParameters)
 
                     if (crc_calc == pkt.crc) {
                         if (pkt.dst == MY_ID && pkt.id == ID_DESTINO) {
-                            lora_handle_packet(&pkt); //                                   <<---------------------------------------------------
+/* >>>>>>>>>>>>>>>>>>>>>> */  lora_handle_packet(&pkt);     //  <<
                             
                         } else {
                             ESP_LOGI(TAG, "Pacote ignorado (dst=%d, eu sou %d)", pkt.dst, MY_ID);
