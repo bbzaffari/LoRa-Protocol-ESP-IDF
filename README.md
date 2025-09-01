@@ -67,7 +67,7 @@ void task_lora_rx(void *pvParameters)
                         ESP_LOGW(TAG, "CRC inválido! esperado=0x%04X, recebido=0x%04X", crc_calc, pkt.crc);
                     }
                 } else {
-                    ESP_LOGW(TAG, "Tamanho inesperado: %d (esperado: %d)", len, LORA_PKT_SIZE);
+                    ESP_LOGW(TAG, "Unexpected size: %d (Expected: %d)", len, LORA_PKT_SIZE);
                 }
             }
 
@@ -81,5 +81,29 @@ void task_lora_rx(void *pvParameters)
         }
     }
 
+}
+````
+# Example of APPLICATION RECEIVER HANDLER
+```c
+
+// HANDLER PARA RECEBER LIDAR COM RX
+static void handler_LoRa_Rx_Controler(lora_packet_t *pkt) {
+
+    if ((pkt->type) == LORA_TYPE_DATA){   
+        char TAG[] = "RX LORA_TYPE_DATA";
+        ESP_LOGI(TAG, "Received: %.*s", pkt->len, pkt->payload); // DEBUG
+        /*
+        * Logic
+        */
+    }
+
+    else if((pkt->type) == LORA_TYPE_ACK) {
+        ACK_PENDENTE = pdFALSE; 
+        ESP_LOGI("RX LORA_TYPE_ACK", "ACK received de %d", pkt->id); // DEBUG
+    }
+
+    else if ((pkt->type) ==LORA_TYPE_NACK){
+        ESP_LOGW("RX LORA_TYPE_NACK", "NACK received de %d", pkt->id); // DEBUG
+    }      
 }
 ````
