@@ -40,11 +40,22 @@
 #define REG_DIO_MAPPING_1       0x40
 
 //----------------------------- PINOUT -----------------------------------
+
+#ifndef CONFIG_MOSI_GPIO
 #define CONFIG_MOSI_GPIO        27
+#endif
+#ifndef CONFIG_MISO_GPIO
 #define CONFIG_MISO_GPIO        19
+#endif
+#ifndef CONFIG_SCK_GPIO
 #define CONFIG_SCK_GPIO         5
+#endif
+#ifndef CONFIG_CS_GPIO
 #define CONFIG_CS_GPIO          18
+#endif
+#ifndef CONFIG_RST_GPIO
 #define CONFIG_RST_GPIO         14
+#endif
 #define LORA_DIO0_PIN           GPIO_NUM_26
 
 //------------------------- DEFINIÇÕES -----------------------------------
